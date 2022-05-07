@@ -9,7 +9,7 @@ public static class ServiceRegistration
     public static void AddInfrastructure(this IServiceCollection services, IWebHostEnvironment env)
     {
         // DbContext -- Do Not Delete
-        if (env.IsEnvironment(LocalConfig.FunctionalTestingEnvName))
+        if (env.IsEnvironment(LocalConfig.FunctionalTestingEnvName) || env.IsDevelopment())
         {
             services.AddDbContext<RecipesDbContext>(options =>
                 options.UseInMemoryDatabase($"RecipeManagement"));
